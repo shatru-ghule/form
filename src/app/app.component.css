@@ -1,5 +1,11 @@
-h1{
-    background: #21f;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
+
+
+.input1{
+    padding-top: 10px;
+}
+.input2{
+    padding-top: 10px;
+}
+.error{
+    color: red;
 }
