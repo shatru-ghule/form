@@ -9,14 +9,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AppComponent {
 
  
- userForm:FormGroup
+ userForm:FormGroup;
 
   constructor(private formbuilder:FormBuilder) {
     this.userForm=this.formbuilder.group({
-      name:['',Validators.required],
-      email:['example'],
-      password:[''],
-      gender:[]
+      name:['',[Validators.required]],
+      lname:['',Validators.required],
+      email:['',[Validators.pattern( /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)]],
+      number:['',[Validators.pattern(/^[6-9]\d{9}$/)]],
+      gender:['',[Validators.required]]
 
     });
 
