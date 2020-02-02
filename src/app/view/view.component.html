@@ -10,15 +10,16 @@
   <th>gender</th>
   <th>contact</th>
   <th>email</th>
+  <th>delete</th>
 
   <tr *ngFor="let user of users">
     <td>{{user.name}}</td>
-    <td>{{user.lname}</td>
-    <td>{{user.email}</td>
-    <td>{{user.number}</td>
-    <td>{{user.gender}</td>
-  
-    
+    <td>{{user.lname}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.number}}</td>
+    <td>{{user.gender}}</td>
+    <td><button (click)="delete(user.name);">delete</button></td>
+    <td><button (click)="edit(user.name);">Edit</button></td>
   </tr>
   
 

@@ -14,6 +14,10 @@ const routes: Routes = [
     component:RegistrationComponent
   },
   {
+    path:'registration.htm/:id',
+    component:RegistrationComponent
+  },
+  {
     path:'view.htm',
     component:ViewComponent,
   }

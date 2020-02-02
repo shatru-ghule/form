@@ -11,9 +11,16 @@ import { User } from '../user';
 export class ViewComponent implements OnInit {
 
   users:User[]=[];
-  constructor(private dataservice: DataService) {
+  constructor(private dataservice: DataService,private router:Router) {
     this.users=this.dataservice.getData();
     
+  }
+   
+  delete(firstName){
+    this.dataservice.deleteData(firstName);
+  }
+  edit(firstName){
+    this.router.navigate(["registration.htm",firstName]);
   }
 
   ngOnInit() {
