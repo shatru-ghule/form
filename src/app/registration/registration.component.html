@@ -1,54 +1,79 @@
 <app-header></app-header>
-
-<h1>Student Registration</h1>
+<mat-card>User Registration</mat-card>
 
 
 <div class="container">
-    <form [formGroup]="userForm">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Name</label>
-            <input type="text" class="form-control" formControlName="name" aria-describedby="emailHelp">
-            <div class="error" *ngIf="this.userForm.controls.name.errors?.required">
-              This is Mandatory field. 
-            </div>
-            
-          </div>
+<br><br><br>
+  <ng-multiselect-dropdown
+  [placeholder]="'custom placeholder'"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+>
+</ng-multiselect-dropdown>
+  <form [formGroup]="userForm">
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Last Name</label>
-            <input type="text" class="form-control" formControlName="lname" aria-describedby="emailHelp">
-            <div class="error" *ngIf="this.userForm.controls.lname.errors?.required">
-              This is Mandatory field. 
-            </div>
-          </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp"> 
-        <div class="error" *ngIf="this.userForm.controls.email.errors?.pattern">
-        please Enter valid Email.
-      </div> 
+      <mat-form-field class="example-full-width">
+        <mat-label> Name</mat-label>
+        <input matInput placeholder="Enter Name" formControlName="fname">
+      </mat-form-field>
+      <div class="error" *ngIf="this.userForm.controls.fname.errors?.required">
+        This is Mandatory field.
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Contact</label>
-        <input type="number" class="form-control" formControlName="number">
-        <div class="error" *ngIf="this.userForm.controls.number.errors?.pattern">
-            please enter contact number. 
-        </div> 
-      </div>
-       <div>
-          Male<input type="radio" value="male"  formControlName="gender">
-  
-          Female <input type="radio" value="Female" formControlName="gender">
-          <div class="error" *ngIf="this.userForm.controls.gender.errors?.required">
-            This is Mandatory field. 
-          </div>
-      
-       </div><br><br>
-     
-   
-      
-      <button  [disabled]="this.userForm.invalid" type="submit" class="btn btn-primary" (click)="submitDetails()">Submit</button>
-      </form>
+    </div>
 
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Enter last Name" formControlName="lname">
+      </mat-form-field>
+      <div class="error" *ngIf="this.userForm.controls.lname.errors?.required">
+        This is Mandatory field.
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email address</mat-label>
+        <input matInput placeholder="Email address" formControlName="email">
+      </mat-form-field>
+      <div class="error" *ngIf="this.userForm.controls.email.errors?.pattern">
+        please Enter valid Email.
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <mat-label>Contact</mat-label>
+        <input matInput placeholder="Contact Number" formControlName="number">
+      </mat-form-field>
+      <div class="error" *ngIf="this.userForm.controls.number.errors?.pattern">
+        please enter contact number.
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-radio-group formControlName="gender" aria-label="Select an option">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+      <div class="error" *ngIf="this.userForm.controls.gender.errors?.required">
+        This is Mandatory field.
+      </div>
+
+    </div>
+    <label for="exampleInputPassword1">Hobbies:</label>
+    <div *ngFor="let item of hobbiesArr">
+  
+      {{item}} <mat-checkbox type="checkbox" [checked]="this.userForm.get('hobbies').value.includes(item)" [value]="item" (change)="onChangeHobbies($event)"></mat-checkbox>
+
+    </div>
+
+
+    <button [disabled]="this.userForm.invalid" type="submit" class="btn btn-primary"
+      (click)="submitDetails()">Submit</button>
+  </form>
+ 
 </div>
 <app-footer></app-footer>
+

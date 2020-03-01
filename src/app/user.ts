@@ -1,9 +1,9 @@
-import { NumberValueAccessor } from "@angular/forms/src/directives";
 
 export class User {
-    name:string;
+    fname:string;
     lname:string;
     email:string;
     number:number;
     gender:string;
+    hobbies:string[];
 }

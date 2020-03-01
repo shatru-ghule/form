@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,54 +10,27 @@ export class DataService {
 users:User[]=[];
  
   
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
 
-  public saveData(user:User):boolean{
+  public saveData(user:User):Observable<User>{
 
-    for(let index=0; index< this.users.length; index++){
-
-      if(user.name==this.users[index].name){
-        this.users.splice(index,1);
-        this.users.push(user);
-        return true;
-      }
-    }
-    this.users.push(user);
-    console.log(user);
-    return true;
-
+   return this.httpClient.post<User>("http://localhost:9090/user",user);
   }
-  public getData(){
-    return this.users;
+  public getData():Observable<User[]>{
+    return this.httpClient.get<User[]>("http://localhost:9090/user");
+  
   }
 
-  public deleteData(fname){
-   for(let index=0; index<this.users.length;index++){
- 
-    if(fname == this.users[index].name){
-      this.users.splice(index,1);
-      console.log("dataRemove");
-
-    }
-    console.log(this.users.length);
-   }
-   
-  }
-  public getUserByFname(name){
-    console.log(name);
-
-    let user:User;
-    for(let index=0;index<this.users.length;index++){
-
-      if(name==this.users[index].name){
-        user=this.users[index];
-
-      }
-    }
-    return user;
-
+  public deleteData(name):Observable<User[]>{
+   return this.httpClient.delete<User[]>("http://localhost:9090/user/"+name);
 
   }
+
+  public getUserByFname(fname):Observable<User>{
+    console.log(fname);
+
+   return this.httpClient.get<User>("http://localhost:9090/user/"+fname);
 
  
+}
 }

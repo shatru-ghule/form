@@ -1,26 +1,26 @@
-<p>
-  view works!
-</p>
-
-{{users|json}}
-
-<table>
-  <th>first Name</th>
-  <th>Last Name</th>
-  <th>gender</th>
-  <th>contact</th>
-  <th>email</th>
-  <th>delete</th>
+<app-header></app-header>
+<table class="table">
+  <th scope="col">first Name</th>
+  <th scope="col">Last Name</th>
+  <th scope="col">gender</th>
+  
+  <th scope="col">contact</th>
+  <th scope="col">Hobbies</th>
+  <th scope="col">email</th>
+  <th scope="col">delete</th>
 
   <tr *ngFor="let user of users">
-    <td>{{user.name}}</td>
+    <td>{{user.fname}}</td>
     <td>{{user.lname}}</td>
     <td>{{user.email}}</td>
     <td>{{user.number}}</td>
     <td>{{user.gender}}</td>
-    <td><button (click)="delete(user.name);">delete</button></td>
-    <td><button (click)="edit(user.name);">Edit</button></td>
+    <td>{{user.hobbies }}</td>
+    <td><button class="btn-danger" (click)="delete(user.fname);">delete</button></td>
+    <td><button class="btn-primary" (click)="edit(user.fname);">Edit</button></td>
   </tr>
   
 
 </table>
+<app-footer></app-footer>
+
